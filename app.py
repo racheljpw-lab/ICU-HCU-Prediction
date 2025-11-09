@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 # === Load model ===
-model_path = os.path.join("outputs", "best_rf_smote.pkl")
+model_path = "best_rf_smote.pkl"
 model = joblib.load(model_path)
 
 # === Header dan deskripsi utama ===
