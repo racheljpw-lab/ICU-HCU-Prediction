@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 # === Load model ===
-model_path = "best_rf_smote.pkl"
+model_path = "/Users/racheljelita/Downloads/TA RACHEL/RF TEST 31 OCT/icu-model/outputs/best_rf_smote.pkl"
 model = joblib.load(model_path)
 
 # === Header dan deskripsi utama ===
@@ -27,7 +27,7 @@ st.subheader("🩺 Masukkan Data Pasien")
 kesadaran_label = {
     "1 - Composmentis": 1,
     "2 - Somnolen": 2,
-    "3 - Sopor (termasuk undersedasi dan on sedasi)": 3,
+    "3 - Sopor (termasuk kondisi sebelum sedasi)": 3,
     "4 - SemiKoma": 4,
     "5 - Koma": 5,
     "6 - Apatis": 6
