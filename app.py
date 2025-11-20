@@ -9,15 +9,13 @@ model_path = "best_rf_smote.pkl"
 model = joblib.load(model_path)
 
 # === Header dan deskripsi utama ===
-st.title("🏥Prediksi Kebutuhan Perawatan ICU/HCU")
-st.subheader("Pasien Pasca-Operasi dan IGD (OK-IGD) di Rumah Sakit")
+st.title("🏥 Prediksi Kebutuhan ICU untuk Pasien Prioritas 1 IGD yang Menjalani Operasi Emergensi")
+st.subheader("Alat Prediksi untuk Membantu Keputusan Alokasi Sumber Daya ICU di Rumah Sakit")
 
 st.write(
-    "Website ini dikembangkan menggunakan model **Random Forest** yang dilatih dengan pendekatan **SMOTE balancing** "
-    "untuk mengatasi ketidakseimbangan data antara pasien yang masuk **ICU** dan **HCU**. "
-    "Model ini memanfaatkan **variabel turunan dari profil demografi dan klinis pasien**, "
-    "khususnya rasio yang menggambarkan hubungan antara tingkat kesadaran dan parameter fisiologis "
-    "(tekanan arteri rata-rata dan laju pernapasan)."
+    "Website ini dikembangkan untuk membantu memprediksi kebutuhan perawatan ICU atau HCU pada pasien. "
+    "Model prediksi yang digunakan didasarkan pada data profil pasien, termasuk kondisi klinis dan tanda-tanda vital seperti tekanan darah dan laju pernapasan. "
+    "Alat ini dirancang untuk memberikan informasi yang berguna bagi dokter dalam pengambilan keputusan terkait alokasi sumber daya ICU."
 )
 
 st.markdown("---")
@@ -62,18 +60,16 @@ if st.button("Prediksi"):
     if pred == 1:
         st.error(
             f"🚨 **Pasien diprediksi membutuhkan perawatan di ICU** "
-            f"(Probabilitas: {proba:.2f})"
         )
         st.caption(
-            "Kondisi pasien menunjukkan risiko tinggi yang memerlukan pemantauan intensif dan dukungan hemodinamik di ICU."
+            "Penilaian atau pengambilan keputusan dikembalikan kepada klinisi sebagai dokter penanggung jawab pasien selaku pengambil keputusan medis."
         )
     else:
         st.info(
             f"🩺 **Pasien diprediksi membutuhkan perawatan di HCU (non-ICU)** "
-            f"(Probabilitas: {proba:.2f})"
         )
         st.caption(
-            "Pasien masih memerlukan pengawasan ketat, namun belum berada pada kondisi kritis yang memerlukan intervensi intensif."
+            "Penilaian atau pengambilan keputusan dikembalikan kepada klinisi sebagai dokter penanggung jawab pasien selaku pengambil keputusan medis."
         )
 
 # === Penjelasan tambahan untuk laporan TA ===
@@ -83,8 +79,8 @@ st.subheader("📊 Penjelasan Singkat Model")
 st.write(
     """
     Model ini berfokus pada dua **variabel turunan yang paling signifikan** hasil analisis *feature importance*, yaitu:
-    - **Rasio kesadaran terhadap MAP (`kesadaran_MAP_ratio`)**, yang merepresentasikan keseimbangan antara tingkat kesadaran dan tekanan perfusi otak.
-    - **Rasio kesadaran terhadap RR (`kesadaran_RR_ratio`)**, yang menggambarkan hubungan antara status neurologis dan fungsi respirasi.
+    - **Rasio kesadaran terhadap MAP**, yang merepresentasikan keseimbangan antara tingkat kesadaran dan tekanan perfusi otak.
+    - **Rasio kesadaran terhadap RR**, yang menggambarkan hubungan antara status neurologis dan fungsi respirasi.
 
     Kedua variabel ini terbukti paling informatif dalam membedakan pasien yang memerlukan **perawatan intensif (ICU)** dibandingkan yang cukup di **HCU**.
     Pendekatan ini menyoroti pentingnya kombinasi antara fungsi kesadaran dan status fisiologis dasar sebagai indikator risiko klinis akut.
