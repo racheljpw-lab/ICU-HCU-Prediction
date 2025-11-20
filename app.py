@@ -5,7 +5,10 @@ import pandas as pd
 import os
 
 # === Load model ===
-model_path = "/Users/racheljelita/Downloads/TA RACHEL/RF TEST 31 OCT/icu-model/outputs/best_rf_smote.pkl"
+import os
+
+model_path = './outputs/best_rf_smote.pkl'  # relative path (sesuaikan dengan struktur direktori)
+print(os.listdir('./outputs/'))  # untuk memverifikasi keberadaan file
 model = joblib.load(model_path)
 
 # === Header dan deskripsi utama ===
