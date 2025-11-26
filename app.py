@@ -5,11 +5,14 @@ import pandas as pd
 import os
 
 # === Load model ===
-import os
+@st.cache_resource
+def load_model():
+    model_path = './outputs/best_rf_smote.pkl'  # Pastikan path benar
+    return joblib.load(model_path)
 
-model_path = './outputs/best_rf_smote.pkl'  # relative path (sesuaikan dengan struktur direktori)
-print(os.listdir('./outputs/'))  # untuk memverifikasi keberadaan file
-model = joblib.load(model_path)
+# Memanggil fungsi untuk memuat model
+model = load_model()
+
 
 # === Header dan deskripsi utama ===
 st.title("🏥 Prediksi Kebutuhan ICU untuk Pasien Prioritas 1 IGD yang Menjalani Operasi Emergensi")
